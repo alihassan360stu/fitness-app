@@ -4,6 +4,9 @@
       "eas": {
         "projectId": "0f1cfc44-2045-4800-8678-ceb38686d4a2"
       }
+    },
+    "android": {
+      "package": "com.alihassan3601.fitnesstrackerexpo"
     }
   }
 }
