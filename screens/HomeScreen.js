@@ -35,7 +35,6 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      
       <View style={styles.header}>
         <Text style={styles.title}>🏋️‍♂️ Fitness Tracker</Text>
         <Text style={styles.subtitle}>Track your daily exercises</Text>
@@ -56,24 +55,18 @@ export default function HomeScreen({ navigation }) {
           </TouchableOpacity>
         )}
         ItemSeparatorComponent={() => <View style={{ height: 16 }} />}
-        contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 20 }}
+        contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 150 }} // enough bottom padding
       />
 
+      {/* Footer buttons */}
       <View style={styles.footer}>
-        <View style={styles.buttonContainer}>
-          <Button 
-            title="Add Exercise" 
-            onPress={() => navigation.navigate('AddExercise', { onAdd: (newEx) => setExercises(prev => [newEx, ...prev]) })} 
-            color="#1E88E5"
-          />
-        </View>
-        <View style={styles.buttonContainer}>
-          <Button 
-            title="Motivational Quotes" 
-            onPress={() => navigation.navigate('MotivationalQuotes')} 
-            color="#10B981"
-          />
-        </View>
+        <TouchableOpacity style={styles.footerButton} onPress={() => navigation.navigate('AddExercise', { onAdd: (newEx) => setExercises(prev => [newEx, ...prev]) })}>
+          <Text style={styles.footerButtonText}>Add Exercise</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={[styles.footerButton, {backgroundColor:'#10B981'}]} onPress={() => navigation.navigate('MotivationalQuotes')}>
+          <Text style={styles.footerButtonText}>Motivational Quotes</Text>
+        </TouchableOpacity>
       </View>
 
     </View>
@@ -81,10 +74,7 @@ export default function HomeScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: { 
-    flex: 1, 
-    backgroundColor: '#F2F7FB'
-  },
+  container: { flex:1, backgroundColor:'#F2F7FB' },
 
   header: {
     paddingVertical: 20,
@@ -96,32 +86,30 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
 
-  title: {
-    fontSize: 28,
-    fontWeight: '700',
-    textAlign: 'center',
-    color: '#1E3A8A',
-  },
-
-  subtitle: {
-    fontSize: 16,
-    textAlign: 'center',
-    color: '#555',
-    marginTop: 4,
-  },
+  title: { fontSize:28, fontWeight:'700', textAlign:'center', color:'#1E3A8A' },
+  subtitle: { fontSize:16, textAlign:'center', color:'#555', marginTop:4 },
 
   footer: {
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    paddingVertical: 16,
-    borderTopWidth: 1,
-    borderColor: '#ddd',
-    backgroundColor: '#fff',
-    gap:5
+    position:'absolute',
+    bottom:0,
+    width:'100%',
+    flexDirection:'row',
+    justifyContent:'space-around',
+    paddingVertical:12,
+    backgroundColor:'#fff',
+    borderTopWidth:1,
+    borderColor:'#ddd',
+    elevation:5,
   },
 
-  buttonContainer: {
-    flex: 1,
-    marginHorizontal: 8
-  }
+  footerButton: {
+    flex:1,
+    marginHorizontal:8,
+    backgroundColor:'#1E88E5',
+    paddingVertical:14,
+    borderRadius:12,
+    alignItems:'center'
+  },
+
+  footerButtonText: { color:'#fff', fontWeight:'700', fontSize:16 }
 });
